@@ -1,11 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="style.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BibbleClapper</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&display=swap');
+        </style>
 </head>
 <body>
-    <h1>Welcome to BibbleClapper</h1>
+    <h1>Welcome to Bibble Clapper</h1>
+    <h2>A place to play fun zanky games!</h2>
+    <p>Click on the buttons below to see what happens!</p>
+    <button id="fake-button">Click Me!</button>
+    <button id="multi-click-button">Unlock Me</button>
+    <button id="runaway-button">Catch Me!</button>
+    <button id="text-change-button">Press Me</button>
+    <button id="exploding-button">Self-Destruct</button>
+    <button id="tiny-button">Click Me (If You Can)</button>
+    <button id="double-click-button">Double Click Me</button>
+    <button id="delayed-button">Click and Wait</button>
+    
+    <p id="annoying-text">This text will change randomly!</p>
+    <input type="text" id="random-input" placeholder="Type something... maybe.">
+    <div id="random-box">Hover over me!</div>
+    <audio id="hidden-audio" src="your-audio-file.mp3"></audio>
+    <button id="sound-button">Play a Random Sound</button>
+
+    <div class="chaos-container">
+        <marquee id="moving-text">You can't catch me!</marquee>
+        <div id="color-box">Watch me change!</div>
+        <img id="random-image" src="https://placekitten.com/100/100" alt="Random Image">
+        <p id="glitch-text">Glitching...</p>
+        <div id="wobble-box">Wobble Wobble</div>
+    </div>
+
+    <script>
+        // the fake button
+        document.getElementById("fake-button").addEventListener("click", function(event) {
+            alert("Haha, this button does nothing!");
+        });
+
+        // multiple clik bytton
+        let clickCount = 0;
+        document.getElementById("multi-click-button").addEventListener("click", function(event) {
+            clickCount++;
+            if (clickCount < 5) {
+                alert("Not enough clicks! Try again...");
+            } else {
+                alert("Fine, you win.");
+            }
+        });
+
+        // run away button
+        document.getElementById("runaway-button").addEventListener("mouseover", function(event) {
+            let button = event.target;
+            button.style.position = "absolute";
+            button.style.left = Math.random() * window.innerWidth + "px";
+            button.style.top = Math.random() * window.innerHeight + "px";
+        });
+
+        // changes text
+        let messages = ["Press Me", "Try Again", "Nope", "Almost...", "Still Not Working"];
+        document.getElementById("text-change-button").addEventListener("click", function(event) {
+            event.target.textContent = messages[Math.floor(Math.random() * messages.length)];
+        });
+
+        // by by button (explode)
+        document.getElementById("exploding-button").addEventListener("click", function(event) {
+            event.target.remove();
+            alert("Boom! The button is gone.");
+        });
+
+        // shrinking button
+        document.getElementById("tiny-button").addEventListener("click", function(event) {
+            let button = event.target;
+            let size = button.getBoundingClientRect().width;
+            if (size > 5) {
+                button.style.width = (size * 0.8) + "px";
+                button.style.height = (size * 0.8) + "px";
+            } else {
+                alert("Too small to click now!");
+            }
+        });
+
+        // duble click button
+        document.getElementById("double-click-button").addEventListener("dblclick", function(event) {
+            alert("Wow, you actually double-clicked!");
+        });
+
+        // delayed one
+        document.getElementById("delayed-button").addEventListener("click", function(event) {
+            let button = event.target;
+            button.disabled = true;
+            button.textContent = "Waiting...";
+            setTimeout(() => {
+                button.textContent = "Done! Click again!";
+                button.disabled = false;
+            }, 3000);
+        });
+
+        // text changer
+        setInterval(() => {
+            let messages = ["Why are you still here?", "You can't escape.", "I'm watching you.", "Click something already!", "The website is alive!"];
+            document.getElementById("annoying-text").textContent = messages[Math.floor(Math.random() * messages.length)];
+        }, 3000);
+
+        // my fav one
+        document.getElementById("random-input").addEventListener("input", function(event) {
+            let randomText = ["Oops!", "Nope.", "Try again.", "Haha!", "You typed what?"];
+            event.target.value = randomText[Math.floor(Math.random() * randomText.length)];
+        });
+
+        // moving box
+        document.getElementById("random-box").addEventListener("mouseover", function(event) {
+            let box = event.target;
+            box.style.position = "absolute";
+            box.style.left = Math.random() * window.innerWidth + "px";
+            box.style.top = Math.random() * window.innerHeight + "px";
+        });
+
+        // sound effect, need to add sound effects
+        document.getElementById("sound-button").addEventListener("click", function() {
+            let sounds = ["sound1.mp3", "sound2.mp3", "sound3.mp3"];
+            let audio = document.getElementById("hidden-audio");
+            audio.src = sounds[Math.floor(Math.random() * sounds.length)];
+            audio.play();
+        });
+
+        // run awayy stuff
+        setInterval(() => {
+            let texts = ["You can't catch me!", "Why are you reading this?", "I'm outta here!", "Find a button instead!"];
+            document.getElementById("moving-text").textContent = texts[Math.floor(Math.random() * texts.length)];
+        }, 3000);
+
+        // color changing
+        setInterval(() => {
+            let box = document.getElementById("color-box");
+            box.style.backgroundColor = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+        }, 500);
+
+        // img swap, use cdn
+        setInterval(() => {
+            let images = [
+                "https://placekitten.com/100/100",
+                "https://placebear.com/100/100",
+                "https://www.fillmurray.com/100/100",
+                "https://www.placecage.com/100/100"
+            ];
+            document.getElementById("random-image").src = images[Math.floor(Math.random() * images.length)];
+        }, 4000);
+
+        // glith text
+        setInterval(() => {
+            let glitchText = document.getElementById("glitch-text");
+            glitchText.style.transform = `translate(${Math.random()*10}px, ${Math.random()*10}px)`;
+            glitchText.style.color = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+        }, 200);
+
+        // wobble box
+        setInterval(() => {
+            let box = document.getElementById("wobble-box");
+            box.style.transform = `rotate(${Math.random()*20 - 10}deg) translate(${Math.random()*20 - 10}px, ${Math.random()*20 - 10}px)`;
+        }, 300);
+    </script>
 </body>
 </html>
