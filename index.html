@@ -11,21 +11,21 @@
 </head>
 <body>
     <h1>Welcome to Bibble Clapper</h1>
-    <h2>A place to play fun zanky games!</h2>
+    <h2>A place to zanky around!</h2>
     <p>Click on the buttons below to see what happens!</p>
     <button id="fake-button">Click Me!</button>
-    <button id="multi-click-button">Unlock Me</button>
-    <button id="runaway-button">Catch Me!</button>
-    <button id="text-change-button">Press Me</button>
-    <button id="exploding-button">Self-Destruct</button>
-    <button id="tiny-button">Click Me (If You Can)</button>
-    <button id="double-click-button">Double Click Me</button>
-    <button id="delayed-button">Click and Wait</button>
+    <button id="multi-click-button" style="position: absolute; top: 50px; left: 100px;">Unlock Me</button>
+    <button id="runaway-button" style="position: absolute; top: 150px; left: 300px;">Catch Me!</button>
+    <button id="text-change-button" style="position: absolute; top: 250px; left: 200px;">Press Me</button>
+    <button id="exploding-button" style="position: absolute; top: 350px; left: 400px;">Self-Destruct</button>
+    <button id="tiny-button" style="position: absolute; top: 450px; left: 150px;">Click Me (If You Can)</button>
+    <button id="double-click-button" style="position: absolute; top: 550px; left: 350px;">Double Click Me</button>
+    <button id="delayed-button" style="position: absolute; top: 650px; left: 250px;">Click and Wait</button>
     
     <p id="annoying-text">This text will change randomly!</p>
     <input type="text" id="random-input" placeholder="Type something... maybe.">
     <div id="random-box">Hover over me!</div>
-    <audio id="hidden-audio" src="your-audio-file.mp3"></audio>
+    <audio id="hidden-audio" src="sound.wav"></audio>
     <button id="sound-button">Play a Random Sound</button>
 
     <div class="chaos-container">
@@ -141,16 +141,6 @@
             box.style.backgroundColor = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
         }, 500);
 
-        // img swap, use cdn
-        setInterval(() => {
-            let images = [
-                "https://placekitten.com/100/100",
-                "https://placebear.com/100/100",
-                "https://www.fillmurray.com/100/100",
-                "https://www.placecage.com/100/100"
-            ];
-            document.getElementById("random-image").src = images[Math.floor(Math.random() * images.length)];
-        }, 4000);
 
         // glith text
         setInterval(() => {
